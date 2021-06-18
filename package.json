@@ -1,0 +1,26 @@
+{
+  "name": "simple-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "eslint": "eslint ./",
+    "start": "npx nodemon app.js",
+    "dev": "npx nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justjundana/Simple-Blog.git"
+  },
+  "author": "Jundana Al-Basyir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justjundana/Simple-Blog/issues"
+  },
+  "homepage": "https://github.com/justjundana/Simple-Blog#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
+}
