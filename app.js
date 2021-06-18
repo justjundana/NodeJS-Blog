@@ -20,4 +20,15 @@ app.get('/', (req, res) => {
     );
 });
 
+app.get('/:id', (req, res) => {
+    const id = req.params.id;
+    connection.query(
+        'SELECT * FROM articles WHERE id = ?',
+        [id],
+        (error, results) => {
+            res.render('article.ejs', { article: results[0] });
+        }
+    );
+});
+
 app.listen(3000);
