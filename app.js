@@ -12,7 +12,12 @@ const connection = mysql.createConnection({
 });
 
 app.get('/', (req, res) => {
-    res.render('index.ejs');
+    connection.query(
+        'SELECT * FROM articles',
+        (error, results) => {
+            res.render('index.ejs', { articles: results });
+        }
+    );
 });
 
 app.listen(3000);
