@@ -155,4 +155,48 @@ app.get('/:id', (req, res) => {
     );
 });
 
+app.get('/create', (req, res) => {
+    res.render('create.ejs');
+});
+
+app.post('/create', (req, res) => {
+    connection.query(
+        'INSERT INTO articles (title, content) VALUES (?, ?)',
+        [req.body.title, req.body.content],
+        (error, results) => {
+            res.redirect('/');
+        }
+    );
+});
+
+app.get('/edit/:id', (req, res) => {
+    connection.query(
+        'SELECT * FROM articles WHERE id = ?',
+        [req.params.id],
+        (error, results) => {
+            res.render('edit.ejs', { article: results[0] });
+        }
+    );
+});
+
+app.post('/update/:id', (req, res) => {
+    connection.query(
+        'UPDATE articles SET title = ?, content = ? WHERE id = ?',
+        [req.body.title, req.body.content, req.params.id],
+        (error, results) => {
+            res.redirect('/');
+        }
+    );
+});
+
+app.get('/delete/:id', (req, res) => {
+    connection.query(
+        'DELETE FROM articles WHERE id = ?',
+        [req.params.id],
+        (error, results) => {
+            res.redirect('/');
+        }
+    );
+});
+
 app.listen(3000);
