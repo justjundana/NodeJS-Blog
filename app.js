@@ -144,7 +144,16 @@ app.get('/', (req, res) => {
     );
 });
 
-app.get('/:id', (req, res) => {
+app.get('/article', (req, res) => {
+    connection.query(
+        'SELECT * FROM articles',
+        (error, results) => {
+            res.render('index.ejs', { articles: results });
+        }
+    );
+});
+
+app.get('/article/:id', (req, res) => {
     const id = req.params.id;
     connection.query(
         'SELECT * FROM articles WHERE id = ?',
